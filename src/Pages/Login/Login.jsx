@@ -33,7 +33,7 @@ const handleLogin =async (e)=>{
     localStorage.setItem("token", data.token);
     toast.success("Login Successful");
     // ✅ Redirect to dashboard
-    navigate("/dashboard");
+    navigate("/dashboard/dashboard1");
 
 
     }catch(err){

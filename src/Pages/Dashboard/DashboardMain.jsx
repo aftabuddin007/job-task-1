@@ -1,13 +1,15 @@
 import React from 'react';
-import Navbar from '../../Component/Navbar/Navbar';
-import { Outlet } from 'react-router';
+import Dashboard from './Dashboard';
+import Statisticspage from './Statisticspage';
+
 
 const DashboardMain = () => {
     return (
         <div>
             
-            <Outlet></Outlet>
-            
+           
+            <Dashboard></Dashboard>
+            {/* <Statisticspage></Statisticspage> */}
         </div>
     );
 };

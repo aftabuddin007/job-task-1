@@ -1,27 +1,18 @@
-// App.js
+
+
+
 import React, { useState } from 'react';
 import {Menu, X,Home,Users,Settings,BarChart3,Mail,Calendar,Bell,Search,ChevronDown,LogOut,Package,HelpCircle,FileText,Shield} from 'lucide-react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router';
 import Statisticspage from './Statisticspage';
 
-function App() {
+function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('dashboard');
 
-  // const menuItems = [
-  //   { icon: Home, label: 'Dashboard', key: 'dashboard' },
-  //   { icon: BarChart3, label: 'Analytics', key: 'analytics' },
-  //   { icon: Users, label: 'Users', key: 'users' },
-  //   { icon: Package, label: 'Products', key: 'products' },
-  //   { icon: FileText, label: 'Reports', key: 'reports' },
-  //   { icon: Mail, label: 'Messages', key: 'messages' },
-  //   { icon: Calendar, label: 'Calendar', key: 'calendar' },
-  //   { icon: Shield, label: 'Security', key: 'security' },
-  //   { icon: HelpCircle, label: 'Help', key: 'help' },
-  //   { icon: Settings, label: 'Settings', key: 'settings' },
-  // ];
+
 
   const handleLogout = () => {
     console.log('Logging out...');
@@ -64,7 +55,7 @@ function App() {
 
     <li>
       <Link
-        to="/dashboard"
+        to="/dashboard/dashboard1"
         onClick={() => setSidebarOpen(false)}
         className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
       >
@@ -75,7 +66,7 @@ function App() {
 
     <li>
       <Link
-        to="/analytics"
+        to="/dashboard/analytics"
         onClick={() => setSidebarOpen(false)}
         className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
       >
@@ -86,7 +77,7 @@ function App() {
 
     <li>
       <Link
-        to="/users"
+        to="dashboard/user"
         onClick={() => setSidebarOpen(false)}
         className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
       >
@@ -97,7 +88,7 @@ function App() {
 
     <li>
       <Link
-        to="/products"
+        to="/dashboard/products"
         onClick={() => setSidebarOpen(false)}
         className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
       >
@@ -106,27 +97,7 @@ function App() {
       </Link>
     </li>
 
-    <li>
-      <Link
-        to="/reports"
-        onClick={() => setSidebarOpen(false)}
-        className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
-      >
-        <FileText size={22} />
-        <span className="font-medium">Reports</span>
-      </Link>
-    </li>
-
-    <li>
-      <Link
-        to="/settings"
-        onClick={() => setSidebarOpen(false)}
-        className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
-      >
-        <Settings size={22} />
-        <span className="font-medium">Settings</span>
-      </Link>
-    </li>
+   
 
   </ul>
 </nav>
@@ -238,7 +209,7 @@ function App() {
         <main className="p-6">
 
           <Outlet></Outlet>
-<Statisticspage></Statisticspage>
+
 
 
 
@@ -257,4 +228,4 @@ function App() {
   );
 }
 
-export default App;
+export default Dashboard;
