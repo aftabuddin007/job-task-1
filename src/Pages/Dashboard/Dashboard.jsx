@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {Menu, X,Home,Users,Settings,BarChart3,Mail,Calendar,Bell,Search,ChevronDown,LogOut,Package,HelpCircle,FileText,Shield} from 'lucide-react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router';
+import Statisticspage from './Statisticspage';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -235,7 +236,13 @@ function App() {
 
         {/* Main Content Placeholder */}
         <main className="p-6">
+
           <Outlet></Outlet>
+<Statisticspage></Statisticspage>
+
+
+
+
         </main>
       </div>
 
