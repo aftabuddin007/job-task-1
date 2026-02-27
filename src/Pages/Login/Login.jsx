@@ -1,19 +1,51 @@
 import React, { useState } from 'react';
 import { FaEyeSlash, FaRegEye } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 const Login = () => {
-
+const [error,setError]=useState("");
+// const [password,setPassword]=useState("");
+const navigate = useNavigate();
 
 const [show,setShow]=useState(false);
-const handleLogin =(e)=>{
+const handleLogin =async (e)=>{
     e.preventDefault();
+      const form = e.target
+    const email = form.email.value
+    const password = form.password.value
+    // console.log({email,password})
+    try {
+      const res = await fetch("https://task-api-eight-flax.vercel.app/api/login",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+
+        },
+        body:JSON.stringify({email,password}),
+      } )
+ const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error("Invalid email or password");
+    }
+
+    // ✅ Save token in localStorage
+    localStorage.setItem("token", data.token);
+    toast.success("Login Successful");
+    // ✅ Redirect to dashboard
+    navigate("/dashboard");
+
+
+    }catch(err){
+      setError(err.message)
+    }
 }
 
     return (
         <div>
              <div>
-            <div className='items-center justify-center flex   min-h-screen bg-green-300'>
-                <div className="card bg-green-100 w-full max-w-sm shrink-0 shadow-2xl">
+            <div className='items-center justify-center flex   min-h-screen bg-orange-300'>
+                <div className="card bg-orange-100 w-full max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <h1 className="text-3xl font-bold text-center">Login Your Account</h1>
         <form  onSubmit={handleLogin}>
@@ -31,21 +63,17 @@ const handleLogin =(e)=>{
           <input name='password' type={show ? 'text':'password'} className="input" placeholder="Password" required />
           <span onClick={()=>setShow(!show)} className='absolute right-7 top-8 cursor-pointer z-50'>{show ? <FaRegEye />:<FaEyeSlash />}</span>
           </div>
-          {/* {
+          {
             error && <p className='text-red-500 text-xs'>{error}</p>
           }  
-           */}
+          
             <button type='button' 
             // onClick={handleForgetPassword} 
             className=" text-left  link link-hover">Forgot password?</button>
             
-          <button type='submit' className="btn btn-success mt-4 text-white">Login</button>
-          <p className='text-center font-bold text-md'>Or</p>
-          <div className='text-center  '>
-            {/* Google */}
-
-          </div>
-          {/* <p className='text-center mt-4 font-semibold '>Don't Have an account? <Link to='/auth/signup' className='text-red-600'>SignUp</Link></p> */}
+          <button type='submit' className="btn btn-primary mt-4 text-white">Login</button>
+          
+        
         </fieldset>
         </form>
       </div>
