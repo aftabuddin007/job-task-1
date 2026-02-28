@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import {Menu, X,Home,Users,Settings,BarChart3,Mail,Calendar,Bell,Search,ChevronDown,LogOut,Package,HelpCircle,FileText,Shield} from 'lucide-react';
-import { Navigate, Outlet, useNavigate } from 'react-router';
+import { Navigate, NavLink, Outlet, useNavigate } from 'react-router';
 import { Link } from 'react-router';
 import Statisticspage from './Statisticspage';
 import { toast } from 'react-toastify';
@@ -68,52 +68,70 @@ function Dashboard() {
 
   <ul className="space-y-2">
 
-    <li>
-      <Link
-        to="/dashboard/dashboard1"
-        onClick={() => setSidebarOpen(false)}
-        className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
-      >
-        <Home size={22} />
-        <span className="font-medium">Dashboard</span>
-      </Link>
-    </li>
-
-    <li>
-      <Link
-        to="/dashboard/analytics"
-        onClick={() => setSidebarOpen(false)}
-        className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
-      >
-        <BarChart3 size={22} />
-        <span className="font-medium">Analytics</span>
-      </Link>
-    </li>
-
-    <li>
-      <Link
-        to="dashboard/user"
-        onClick={() => setSidebarOpen(false)}
-        className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
-      >
-        <Users size={22} />
-        <span className="font-medium">Users</span>
-      </Link>
-    </li>
-
-    <li>
-      <Link
-        to="/dashboard/products"
-        onClick={() => setSidebarOpen(false)}
-        className="flex items-center space-x-4 px-4 py-3 rounded-xl text-indigo-100 hover:bg-white hover:text-blue-300 transition-all"
-      >
-        <Package size={22} />
-        <span className="font-medium">Products</span>
-      </Link>
-    </li>
-
-   
-
+<li>
+<NavLink
+  to="dashboard1"
+  onClick={() => setSidebarOpen(false)}
+  className={({ isActive }) =>
+    `flex items-center space-x-4 px-4 py-3 rounded-xl transition-all ${
+      isActive
+        ? "bg-white text-indigo-600 font-semibold"
+        : "text-indigo-100 hover:bg-white hover:text-blue-300"
+    }`
+  }
+>
+  <Home size={22} />
+  <span className="font-medium">Dashboard</span>
+</NavLink>
+</li>
+<li>
+<NavLink
+  to="analytics"
+  onClick={() => setSidebarOpen(false)}
+  className={({ isActive }) =>
+    `flex items-center space-x-4 px-4 py-3 rounded-xl transition-all ${
+      isActive
+        ? "bg-white text-indigo-600 font-semibold"
+        : "text-indigo-100 hover:bg-white hover:text-blue-300"
+    }`
+  }
+>
+  <BarChart3 size={22} />
+  <span className="font-medium">Analytics</span>
+</NavLink>
+</li>
+<li>
+<NavLink
+  to="dashboard/user"
+  onClick={() => setSidebarOpen(false)}
+  className={({ isActive }) =>
+    `flex items-center space-x-4 px-4 py-3 rounded-xl transition-all ${
+      isActive
+        ? "bg-white text-indigo-600 font-semibold"
+        : "text-indigo-100 hover:bg-white hover:text-blue-300"
+    }`
+  }
+>
+  <Users size={22} />
+  <span className="font-medium">Users</span>
+</NavLink>
+</li>
+<li>
+<NavLink
+  to="products"
+  onClick={() => setSidebarOpen(false)}
+  className={({ isActive }) =>
+    `flex items-center space-x-4 px-4 py-3 rounded-xl transition-all ${
+      isActive
+        ? "bg-white text-indigo-600 font-semibold"
+        : "text-indigo-100 hover:bg-white hover:text-blue-300"
+    }`
+  }
+>
+  <Package size={22} />
+  <span className="font-medium">Products</span>
+</NavLink>
+</li>
   </ul>
 </nav>
 
