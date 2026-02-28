@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Rectangle,
 } from 'recharts';
+import Loading from '../../Component/Loading';
 const AnimatedShape = (props) => {
   return (
     <>
@@ -27,18 +28,22 @@ const AnimatedShape = (props) => {
   );
 };
 const Analytics = () => {
- const [data, setData] = useState(null);
+ const [data, setData] = useState([]);
+ const [loading, setLoading] = useState(true);
 useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("https://task-api-eight-flax.vercel.app/api/analytics");
       const result = await res.json();
       setData(result);
-      console.log(result)
+      // console.log(result)
+setLoading(false)
     };
     fetchData();
   }, []);
 
-
+if(loading){
+  return <Loading></Loading>
+}
 
 
     return (

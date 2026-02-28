@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Rectangle,
 } from 'recharts';
+import Loading from '../../Component/Loading';
 
 
 const AnimatedShape = (props) => {
@@ -31,17 +32,19 @@ const AnimatedShape = (props) => {
 
 const Statisticspage = () => {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("https://task-api-eight-flax.vercel.app/api/dashboard");
       const result = await res.json();
       setData(result);
+      setLoading(false)
     };
     fetchData();
   }, []);
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) return <Loading></Loading>;
 
   return (
     <div>

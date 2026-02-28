@@ -8,6 +8,7 @@ import DashboardMain from "../Pages/Dashboard/DashboardMain";
 import Statisticspage from "../Pages/Dashboard/Statisticspage";
 import User from "../Pages/Dashboard/User";
 import Products from "../Pages/Dashboard/Products";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element:<DashboardMain></DashboardMain>,
+
+    element:<PrivateRoute>
+
+      <DashboardMain></DashboardMain>,
+    </PrivateRoute>,
     children:[
       {
         path:"/dashboard/analytics",

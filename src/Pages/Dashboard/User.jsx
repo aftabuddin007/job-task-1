@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import Loading from '../../Component/Loading';
 
 const User = () => {
 
       const [data, setData] = useState(null);
+      const [loading, setLoading] = useState(true);
 useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("https://task-api-eight-flax.vercel.app/api/users");
       const result = await res.json();
       setData(result);
     //   console.log(data)
+    setLoading(false)
     };
     fetchData();
   }, []);
 
-
+if(loading){
+  return <Loading></Loading>
+}
 
     return (
         <div>

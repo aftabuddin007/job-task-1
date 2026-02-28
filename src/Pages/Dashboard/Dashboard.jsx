@@ -3,20 +3,35 @@
 
 import React, { useState } from 'react';
 import {Menu, X,Home,Users,Settings,BarChart3,Mail,Calendar,Bell,Search,ChevronDown,LogOut,Package,HelpCircle,FileText,Shield} from 'lucide-react';
-import { Outlet } from 'react-router';
+import { Navigate, Outlet, useNavigate } from 'react-router';
 import { Link } from 'react-router';
 import Statisticspage from './Statisticspage';
+import { toast } from 'react-toastify';
 
 function Dashboard() {
+  const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('dashboard');
 
 
 
-  const handleLogout = () => {
-    console.log('Logging out...');
-    alert('Logged out successfully!');
+  const handleLogout = async() => {
+    try{
+      await fetch("https://task-api-eight-flax.vercel.app/api/logout",{
+        method:"POST",
+        headers:{
+          Authorization:`Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      
+    }catch(err){
+        toast.error("Logout Failed",err)
+      }finally{
+        localStorage.removeItem("token");
+        toast.success("Logout Successful");
+        navigate("/")
+      }
   };
 
   return (
