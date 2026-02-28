@@ -26,8 +26,8 @@ if(loading){
 
         <div>
 
-           <h2 className="text-2xl font-bold">Products</h2>
-        <div className='grid grid-cols-1 sm:grid-cols-3'>
+           <h2 className="text-2xl font-bold my-6">Products</h2>
+        <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
            {/* /api/products  */}
         
 {
